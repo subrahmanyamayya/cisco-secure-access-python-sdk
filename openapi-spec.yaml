@@ -9,7 +9,7 @@ info:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Cisco Secure Access API
-  version: 1.0.0.b
+  version: v2.0.202510140659
 servers:
 - url: https://api.sse.cisco.com
 - url: https://api.sse.cisco.com/{basePath}
@@ -17,8 +17,8 @@ servers:
     basePath:
       default: deployments/v2
 security:
-- http: []
 - oauthFlow: []
+- http: []
 tags:
 - name: Internal Networks
 - name: Secure Access
@@ -25607,7 +25607,7 @@ components:
       properties:
         message:
           type: string
-      title: NotFound
+      title: Forbidden
       type: object
     FinancialViability:
       description: Financial risk to the service provider, based on Dun & Bradstreet's
