@@ -9,7 +9,7 @@ info:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Cisco Secure Access API
-  version: v2.0.202510140659
+  version: v2.0.202510150534
 servers:
 - url: https://api.sse.cisco.com
 - url: https://api.sse.cisco.com/{basePath}
@@ -17,8 +17,8 @@ servers:
     basePath:
       default: deployments/v2
 security:
-- oauthFlow: []
 - http: []
+- oauthFlow: []
 tags:
 - name: Internal Networks
 - name: Secure Access
@@ -25018,7 +25018,7 @@ components:
         tags:
           $ref: '#/components/schemas/integrationTags'
         type:
-          $ref: '#/components/schemas/thirdPartyIntegrationsIntegrationType'
+          $ref: '#/components/schemas/integrationType'
         webhookConfig:
           $ref: '#/components/schemas/WebhookConfigInput'
       required:
@@ -25607,7 +25607,7 @@ components:
       properties:
         message:
           type: string
-      title: Forbidden
+      title: ServerError
       type: object
     FinancialViability:
       description: Financial risk to the service provider, based on Dun & Bradstreet's
@@ -26066,7 +26066,7 @@ components:
         tags:
           $ref: '#/components/schemas/integrationTags'
         type:
-          $ref: '#/components/schemas/thirdPartyIntegrationsIntegrationType'
+          $ref: '#/components/schemas/integrationType'
         updatedFromIp:
           $ref: '#/components/schemas/updatedFromIp'
         webhookConfig:
@@ -26079,28 +26079,6 @@ components:
       - createdAt
       - createdFromIp
       - status
-      type: object
-    IntegrationType:
-      description: The properties of the integration type.
-      example:
-        description: Generic webhook integration for sending HTTP requests
-        id: webhook.v1
-        name: Webhook Integration
-      properties:
-        description:
-          description: The description of the integration type.
-          example: integration of jamf
-          type: string
-        id:
-          $ref: '#/components/schemas/integrationTypeId'
-        name:
-          description: The name of the integration type.
-          example: jamf one integration
-          type: string
-      required:
-      - id
-      - name
-      - description
       type: object
     InternalDomainObject:
       example:
@@ -26583,7 +26561,7 @@ components:
         integrationTypes:
           description: The list of integration types.
           items:
-            $ref: '#/components/schemas/IntegrationType'
+            $ref: '#/components/schemas/thirdPartyIntegrationsIntegrationType'
           type: array
       required:
       - integrationTypes
@@ -32619,6 +32597,15 @@ components:
         description: The tag associated with the integration.
         type: string
       type: array
+    integrationType:
+      description: The type of the integration.
+      enum:
+      - chrome-enterprise.v1
+      - webhook.v1
+      - jamf.v1
+      - intune.v1
+      example: jamf.v1
+      type: string
     integrationTypeId:
       description: The ID of the integration.
       example: a1235678
@@ -35252,14 +35239,27 @@ components:
         type: object
       type: array
     thirdPartyIntegrationsIntegrationType:
-      description: The type of the integration.
-      enum:
-      - chrome-enterprise.v1
-      - webhook.v1
-      - jamf.v1
-      - intune.v1
-      example: jamf.v1
-      type: string
+      description: The properties of the integration type.
+      example:
+        description: Generic webhook integration for sending HTTP requests
+        id: webhook.v1
+        name: Webhook Integration
+      properties:
+        description:
+          description: The description of the integration type.
+          example: integration of jamf
+          type: string
+        id:
+          $ref: '#/components/schemas/integrationTypeId'
+        name:
+          description: The name of the integration type.
+          example: jamf one integration
+          type: string
+      required:
+      - id
+      - name
+      - description
+      type: object
     thirdPartyIntegrationsLimit:
       description: The maximum number of items returned in the collection, counting
         from the offset.
