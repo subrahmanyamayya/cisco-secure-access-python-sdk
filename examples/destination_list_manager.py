@@ -1,3 +1,7 @@
+# Copyright 2025 Cisco Systems, Inc. and its affiliates
+#
+# SPDX-License-Identifier: Apache-2.0
+
 from secure_access.api import destination_lists_api, destinations_api
 from secure_access.api_client import ApiClient
 from access_token import generate_access_token

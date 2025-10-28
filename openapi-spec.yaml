@@ -9,7 +9,7 @@ info:
     name: Apache-2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Cisco Secure Access API
-  version: v2.0.202510150534
+  version: v2.0.202510221109
 servers:
 - url: https://api.sse.cisco.com
 - url: https://api.sse.cisco.com/{basePath}
@@ -21,7 +21,6 @@ security:
 - oauthFlow: []
 tags:
 - name: Internal Networks
-- name: Secure Access
 - description: API Usage reports
   name: API Usage Report
 - name: Applications
@@ -166,7 +165,6 @@ paths:
       summary: List API Keys
       tags:
       - API Keys
-      - Secure Access
     post:
       description: 'Create an API key with certain scopes, name, description, allowed
         IP addresses and CIDR blocks, and expiration.
@@ -196,7 +194,6 @@ paths:
       summary: Create API Key
       tags:
       - API Keys
-      - Secure Access
   /admin/v2/apiKeys/{apiKeyId}:
     delete:
       description: Delete an API key.
@@ -222,7 +219,6 @@ paths:
       summary: Delete API Key
       tags:
       - API Keys
-      - Secure Access
     get:
       description: Get an API key.
       operationId: getAPIKey
@@ -247,7 +243,6 @@ paths:
       summary: Get API Key
       tags:
       - API Keys
-      - Secure Access
     patch:
       description: 'Set new values for the name, description, scopes, or allowed IPs
         for an API key.
@@ -279,7 +274,6 @@ paths:
       summary: Update API Key
       tags:
       - API Keys
-      - Secure Access
   /admin/v2/apiKeys/{apiKeyId}/refresh:
     post:
       description: Refresh the API key and secret.
@@ -307,7 +301,6 @@ paths:
       summary: Refresh API Key
       tags:
       - API Keys
-      - Secure Access
   /admin/v2/iam/rotateKey:
     post:
       description: Rotate the Cisco-managed S3 bucket key for the organization.
@@ -345,7 +338,6 @@ paths:
       summary: Refresh S3 Bucket Key
       tags:
       - S3 Bucket Key Rotation
-      - Secure Access
   /admin/v2/integrationTypes:
     get:
       description: List the types of the third-party applications integrated in the
@@ -379,7 +371,6 @@ paths:
       summary: List Types of Integrations
       tags:
       - Integration Types
-      - Secure Access
   /admin/v2/integrations:
     get:
       description: List the third-party applications integrated in the organization.
@@ -418,7 +409,6 @@ paths:
       summary: List Integrations
       tags:
       - Integrations
-      - Secure Access
     post:
       description: Create a third-party integration in the organization.
       operationId: createIntegration
@@ -461,7 +451,6 @@ paths:
       summary: Create Integration
       tags:
       - Integrations
-      - Secure Access
   /admin/v2/integrations/{intId}:
     delete:
       description: Delete an integration in the organization.
@@ -492,7 +481,6 @@ paths:
       summary: Delete Integration
       tags:
       - Integrations
-      - Secure Access
     get:
       description: Get an integration by ID.
       operationId: getIntegration
@@ -526,7 +514,6 @@ paths:
       summary: Get Integration
       tags:
       - Integrations
-      - Secure Access
     patch:
       description: Update an integration in the organization.
       operationId: updateIntegration
@@ -566,7 +553,6 @@ paths:
       summary: Update Integration
       tags:
       - Integrations
-      - Secure Access
   /admin/v2/integrations/{intId}/credentials:
     post:
       description: Create the credentials for a third-party application integrated
@@ -613,7 +599,6 @@ paths:
       summary: Create Credentials for Integration
       tags:
       - Credentials
-      - Secure Access
   /admin/v2/integrations/{intId}/credentials/{credId}:
     get:
       description: Get the credentials by ID for an integration.
@@ -649,7 +634,6 @@ paths:
       summary: Get Credentials for Integration
       tags:
       - Credentials
-      - Secure Access
   /admin/v2/integrations/{intId}/credentials/{credId}/value:
     get:
       description: Get the value of the credentials for the integration.
@@ -685,7 +669,6 @@ paths:
       summary: Get Value of Credentials for Integration
       tags:
       - Credentials
-      - Secure Access
   /admin/v2/vpn/userConnections:
     get:
       description: List the VPN sessions created by your organization.
@@ -717,7 +700,6 @@ paths:
       summary: List VPN Connections
       tags:
       - VPN Sessions
-      - Secure Access
     put:
       description: Disconnect the remote VPN sessions.
       operationId: updateVpnConnections
@@ -753,7 +735,6 @@ paths:
       summary: Disconnect VPN Users
       tags:
       - VPN Sessions
-      - Secure Access
   /admin/v2/ztna/userSummaries:
     get:
       description: Get the status and counts of device certificates for the zero trust
@@ -780,7 +761,6 @@ paths:
       summary: Get Counts Device Certificates
       tags:
       - ACME Client Certificates
-      - Secure Access
   /admin/v2/ztna/users/{userId}/deviceCertificates:
     get:
       description: Get the latest ACME-issued device certificates for the zero trust
@@ -807,7 +787,6 @@ paths:
       summary: List Certificates for User
       tags:
       - ACME Client Certificates
-      - Secure Access
   /admin/v2/ztna/users/{userId}/devices/{deviceId}:
     delete:
       description: Revoke active ACME-issued certificates and remove the zero trust
@@ -840,7 +819,6 @@ paths:
       summary: Revoke Certificates for Device
       tags:
       - ACME Client Certificates
-      - Secure Access
   /admin/v2/ztna/users/{userId}/devices/{deviceId}/certificates:
     get:
       description: Get the latest ACME-issued certificate for the zero trust user
@@ -868,7 +846,6 @@ paths:
       summary: List Certificates for Device
       tags:
       - ACME Client Certificates
-      - Secure Access
   /auth/v2/token:
     post:
       description: Create an authorization token.
@@ -915,7 +892,6 @@ paths:
       summary: Create Authorization Token
       tags:
       - Token
-      - Secure Access
   /deployments/v2/connectorAgents:
     get:
       description: 'List the Connectors for the Resouce Connector Groups in the organization.
@@ -974,7 +950,6 @@ paths:
       summary: List Connectors
       tags:
       - Connectors
-      - Secure Access
   /deployments/v2/connectorAgents/{id}:
     delete:
       description: Remove the Connector from the Resource Connector Group in the organization.
@@ -1011,7 +986,6 @@ paths:
       summary: Delete Connector
       tags:
       - Connectors
-      - Secure Access
     get:
       description: Get the details about a Connector.
       operationId: getConnector
@@ -1063,7 +1037,6 @@ paths:
       summary: Get Connector
       tags:
       - Connectors
-      - Secure Access
     patch:
       description: Update the properties on the Connector.
       operationId: patchConnector
@@ -1125,7 +1098,6 @@ paths:
       summary: Patch Connector
       tags:
       - Connectors
-      - Secure Access
   /deployments/v2/connectorAgents/counts:
     get:
       description: Get the counts of the state information for the Connectors.
@@ -1162,7 +1134,6 @@ paths:
       summary: Get Counts Connectors States
       tags:
       - Connectors
-      - Secure Access
   /deployments/v2/connectorGroups:
     get:
       description: 'List the Resource Connector Groups in the organization.
@@ -1223,7 +1194,6 @@ paths:
       summary: List Resource Connector Groups
       tags:
       - Connector Groups
-      - Secure Access
     post:
       description: Create a Resource Connector Group in the organization.
       operationId: createConnectorGroup
@@ -1282,7 +1252,6 @@ paths:
       summary: Create Resource Connector Group
       tags:
       - Connector Groups
-      - Secure Access
   /deployments/v2/connectorGroups/{id}:
     delete:
       description: Delete the Resouce Connector Group, including the Connectors in
@@ -1320,7 +1289,6 @@ paths:
       summary: Delete Resource Connector Group
       tags:
       - Connector Groups
-      - Secure Access
     get:
       description: Get the details about a Resource Connector Group.
       operationId: getConnectorGroup
@@ -1372,7 +1340,6 @@ paths:
       summary: Get Resource Connector Group
       tags:
       - Connector Groups
-      - Secure Access
     patch:
       description: 'Update the `name` or `location` properties on the Resource Connector
         Group, or
@@ -1436,7 +1403,6 @@ paths:
       summary: Patch Resource Connector Group
       tags:
       - Connector Groups
-      - Secure Access
     put:
       description: Update the `name` and `location` properties on the Resource Connector
         Group.
@@ -1498,7 +1464,6 @@ paths:
       summary: Update Resource Connector Group
       tags:
       - Connector Groups
-      - Secure Access
   /deployments/v2/connectorGroups/counts:
     get:
       description: Get the counts of the state information for the Resource Connector
@@ -1535,7 +1500,6 @@ paths:
       summary: Get Counts Resource Connector Groups States
       tags:
       - Connector Groups
-      - Secure Access
   /deployments/v2/dnsForwarders:
     get:
       description: List the DNS Forwarders in the organization.
@@ -1586,7 +1550,6 @@ paths:
       summary: List DNS Forwarders
       tags:
       - DNS Forwarders
-      - Secure Access
     post:
       description: Add a DNS Forwarder in the organization.
       operationId: createDnsForwarder
@@ -1623,7 +1586,6 @@ paths:
       summary: Create DNS Forwarder
       tags:
       - DNS Forwarders
-      - Secure Access
   /deployments/v2/dnsForwarders/{dnsForwardersId}:
     delete:
       description: Remove the registered DNS Forwarder in the organization.
@@ -1654,7 +1616,6 @@ paths:
       summary: Delete DNS Forwarder
       tags:
       - DNS Forwarders
-      - Secure Access
     get:
       description: Get the properties for a DNS Forwarder.
       operationId: getDnsForwarder
@@ -1703,7 +1664,6 @@ paths:
       summary: Get DNS Forwarder
       tags:
       - DNS Forwarders
-      - Secure Access
     put:
       description: Update the properties of a DNS Forwarder.
       operationId: updateDnsForwarder
@@ -1754,7 +1714,6 @@ paths:
       summary: Update DNS Forwarder
       tags:
       - DNS Forwarders
-      - Secure Access
   /deployments/v2/identities/registrations/{type}:
     get:
       description: Get the list of identity endpoints or security group tags (SGTs)
@@ -1828,7 +1787,6 @@ paths:
       summary: List Identities
       tags:
       - Identities
-      - Secure Access
     put:
       description: "* Use the `PUT` operation to add a list of identity devices or\
         \ security group tags (SGTs) in the organization. For each API operation,\
@@ -1880,7 +1838,6 @@ paths:
       summary: Update Identities
       tags:
       - Identities
-      - Secure Access
   /deployments/v2/internaldomains:
     get:
       description: List the internal domains.
@@ -1927,7 +1884,6 @@ paths:
       summary: List Internal Domains
       tags:
       - Internal Domains
-      - Secure Access
     post:
       description: 'Create an internal domain. If you do not assign a list of sites
         to the internal domain, the internal domain
@@ -1975,7 +1931,6 @@ paths:
       summary: Create Internal Domain
       tags:
       - Internal Domains
-      - Secure Access
   /deployments/v2/internaldomains/{internalDomainId}:
     delete:
       description: Delete an internal domain.
@@ -2011,7 +1966,6 @@ paths:
       summary: Delete Internal Domain
       tags:
       - Internal Domains
-      - Secure Access
     get:
       description: Get an internal domain.
       operationId: getInternalDomain
@@ -2054,7 +2008,6 @@ paths:
       summary: Get Internal Domain
       tags:
       - Internal Domains
-      - Secure Access
     put:
       description: Update an internal domain.
       operationId: updateInternalDomain
@@ -2101,7 +2054,6 @@ paths:
       summary: Update Internal Domain
       tags:
       - Internal Domains
-      - Secure Access
   /deployments/v2/internalnetworks:
     get:
       description: List the internal networks.
@@ -2153,7 +2105,6 @@ paths:
       summary: List Internal Networks
       tags:
       - Internal Networks
-      - Secure Access
     post:
       description: Create an internal network.
       operationId: createInternalNetwork
@@ -2196,7 +2147,6 @@ paths:
       summary: Create Internal Network
       tags:
       - Internal Networks
-      - Secure Access
   /deployments/v2/internalnetworks/{internalNetworkId}:
     delete:
       description: Delete an internal network.
@@ -2232,7 +2182,6 @@ paths:
       summary: Delete Internal Network
       tags:
       - Internal Networks
-      - Secure Access
     get:
       description: Get an internal network.
       operationId: getInternalNetwork
@@ -2280,7 +2229,6 @@ paths:
       summary: Get Internal Network
       tags:
       - Internal Networks
-      - Secure Access
     put:
       description: Update an internal network.
       operationId: updateInternalNetwork
@@ -2330,7 +2278,6 @@ paths:
       summary: Update Internal Network
       tags:
       - Internal Networks
-      - Secure Access
   /deployments/v2/networkdevices:
     get:
       description: List the network devices.
@@ -2587,7 +2534,6 @@ paths:
       summary: List Networks
       tags:
       - Networks
-      - Secure Access
     post:
       description: Create a network. Before you can create a network, contact Support
         to get your IP range verified.
@@ -2686,7 +2632,6 @@ paths:
       summary: Create Network
       tags:
       - Networks
-      - Secure Access
   /deployments/v2/networks/{networkId}:
     delete:
       description: Delete a network registered in the organization.
@@ -2722,7 +2667,6 @@ paths:
       summary: Delete Network
       tags:
       - Networks
-      - Secure Access
     get:
       description: Get a Network registered in the organization.
       operationId: getNetwork
@@ -2765,7 +2709,6 @@ paths:
       summary: Get Network
       tags:
       - Networks
-      - Secure Access
     put:
       description: Update a Network. Before you can update the network's IP address,
         contact Support to get your IP range verified.
@@ -2861,7 +2804,6 @@ paths:
       summary: Update Network
       tags:
       - Networks
-      - Secure Access
   /deployments/v2/networktunnelgroups:
     get:
       description: 'List the Network Tunnel Groups in the organization.
@@ -2944,7 +2886,6 @@ paths:
       summary: List Network Tunnel Groups
       tags:
       - Network Tunnel Groups
-      - Secure Access
     post:
       description: Create a Network Tunnel Group in the organization.
       operationId: addNetworkTunnelGroup
@@ -3020,7 +2961,6 @@ paths:
       summary: Create Network Tunnel Group
       tags:
       - Network Tunnel Groups
-      - Secure Access
   /deployments/v2/networktunnelgroups/{id}:
     delete:
       description: Delete a Network Tunnel Group in the organization.
@@ -3051,7 +2991,6 @@ paths:
       summary: Delete Network Tunnel Group
       tags:
       - Network Tunnel Groups
-      - Secure Access
     get:
       description: Get a Network Tunnel Group in the organization.
       operationId: getNetworkTunnelGroup
@@ -3121,7 +3060,6 @@ paths:
       summary: Get Network Tunnel Group
       tags:
       - Network Tunnel Groups
-      - Secure Access
     patch:
       description: Update a Network Tunnel Group in the organization.
       operationId: patchNetworkTunnelGroup
@@ -3199,7 +3137,6 @@ paths:
       summary: Update Network Tunnel Group
       tags:
       - Network Tunnel Groups
-      - Secure Access
   /deployments/v2/networktunnelgroups/{id}/networktunnelhubs/{hub_id}/peers/{peer_id}/state:
     get:
       description: Get the state of a peer (tunnel) within an organization's Network
@@ -3237,7 +3174,6 @@ paths:
       summary: Get Tunnel State
       tags:
       - Network Tunnel Groups Peer State
-      - Secure Access
   /deployments/v2/networktunnelgroups/{id}/peers:
     get:
       description: Get the state of all peers (tunnels) within an organization's Network
@@ -3279,7 +3215,6 @@ paths:
       summary: Get Tunnel States for Peers
       tags:
       - Network Tunnel Groups Peer State
-      - Secure Access
   /deployments/v2/networktunnelgroups/{id}/state:
     get:
       description: 'Get the status information for the Network Tunnel Group in the
@@ -3384,7 +3319,6 @@ paths:
       summary: Get State of Network Tunnel Group
       tags:
       - Network Tunnel Groups State
-      - Secure Access
   /deployments/v2/networktunnelgroupsstate:
     get:
       description: 'Get the state for each Network Tunnel Group in the organization.
@@ -3426,7 +3360,6 @@ paths:
       summary: List State of Network Tunnel Groups
       tags:
       - Network Tunnel Groups State
-      - Secure Access
   /deployments/v2/regions:
     get:
       description: List the available regions for the Network Tunnel Groups.
@@ -3477,7 +3410,6 @@ paths:
       summary: List Regions for Network Tunnel Groups
       tags:
       - Network Tunnel Groups Regions
-      - Secure Access
   /deployments/v2/roamingcomputers:
     get:
       description: List the roaming computers.
@@ -3567,7 +3499,6 @@ paths:
       summary: List Roaming Computers
       tags:
       - Roaming Computers
-      - Secure Access
   /deployments/v2/roamingcomputers/{deviceId}:
     delete:
       description: Delete a roaming computer in the organization.
@@ -3598,7 +3529,6 @@ paths:
       summary: Delete Roaming Computer
       tags:
       - Roaming Computers
-      - Secure Access
     get:
       description: Get a roaming computer in the organization.
       operationId: getRoamingComputer
@@ -3648,7 +3578,6 @@ paths:
       summary: Get Roaming Computer
       tags:
       - Roaming Computers
-      - Secure Access
     put:
       description: Update a roaming computer in the organization.
       operationId: updateRoamingComputer
@@ -3712,7 +3641,6 @@ paths:
       summary: Update Roaming Computer
       tags:
       - Roaming Computers
-      - Secure Access
   /deployments/v2/roamingcomputers/orgInfo:
     get:
       description: 'Get the OrgInfo.json properties for deploying the Cisco Secure
@@ -3748,7 +3676,6 @@ paths:
       summary: Get OrgInfo Properties
       tags:
       - Organization Information
-      - Secure Access
   /deployments/v2/sites:
     get:
       description: List the Sites in the organization.
@@ -3793,7 +3720,6 @@ paths:
       summary: List Sites
       tags:
       - Sites
-      - Secure Access
     post:
       description: Create a Site in the organization.
       operationId: createSite
@@ -3848,7 +3774,6 @@ paths:
       summary: Create Site
       tags:
       - Sites
-      - Secure Access
   /deployments/v2/sites/{siteId}:
     delete:
       description: Delete a Site in the organization.
@@ -3879,7 +3804,6 @@ paths:
       summary: Delete Site
       tags:
       - Sites
-      - Secure Access
     get:
       description: Get a Site in the organization.
       operationId: getSite
@@ -3920,7 +3844,6 @@ paths:
       summary: Get Site
       tags:
       - Sites
-      - Secure Access
     put:
       description: Update a Site in the organization.
       operationId: updateSite
@@ -3974,7 +3897,6 @@ paths:
       summary: Update Site
       tags:
       - Sites
-      - Secure Access
   /investigate/v2/bgp_routes/asn/{asn}/prefixes_for_asn.json:
     get:
       description: 'A response to a valid ASN returns an array of hash references.
@@ -4066,7 +3988,6 @@ paths:
       summary: Get BGP Route Information for ASN
       tags:
       - AS Information for a Domain
-      - Secure Access
   /investigate/v2/bgp_routes/ip/{ip}/as_for_ip.json:
     get:
       description: 'This endpoint provides data about ASN and IP relationships,
@@ -4169,7 +4090,6 @@ paths:
       summary: Get BGP Route Information for IP
       tags:
       - AS Information for a Domain
-      - Secure Access
   /investigate/v2/domains/categorization:
     post:
       description: 'Provide a list of domains and look up the status, and security
@@ -4247,7 +4167,6 @@ paths:
       summary: Check Status and Categorization of Domains
       tags:
       - Domain Status and Categorization
-      - Secure Access
   /investigate/v2/domains/categorization/{domain}:
     get:
       description: 'Look up the status, and security and content category IDs for
@@ -4299,7 +4218,6 @@ paths:
       summary: Get Domain Status and Categorization
       tags:
       - Domain Status and Categorization
-      - Secure Access
   /investigate/v2/domains/risk-score/{domain}:
     get:
       description: 'The Investigate Risk Score is based on an analysis of
@@ -4377,7 +4295,6 @@ paths:
       summary: Get Risk Score for Domain
       tags:
       - Security Information for a Domain
-      - Secure Access
   /investigate/v2/domains/volume/{domain}:
     get:
       description: 'List the query volume for a domain over the last 30 days.
@@ -4476,7 +4393,6 @@ paths:
       summary: Get Domain Volume
       tags:
       - Domain Volume
-      - Secure Access
   /investigate/v2/links/name/{domain}:
     get:
       description: 'List the domain names that are frequently requested around
@@ -4561,7 +4477,6 @@ paths:
       summary: Get Related Domains for Domain
       tags:
       - Related Domains for a Domain
-      - Secure Access
   /investigate/v2/pdns/domain/{domain}:
     get:
       description: Get the Resource Record (RR) data for DNS responses, and categorization
@@ -4623,7 +4538,6 @@ paths:
       summary: Get Resource Records for Domain
       tags:
       - Passive DNS
-      - Secure Access
   /investigate/v2/pdns/ip/{ip}:
     get:
       description: Get the Resource Record (RR) data for DNS responses, and categorization
@@ -4691,7 +4605,6 @@ paths:
       summary: Get Resource Records for IP
       tags:
       - Passive DNS
-      - Secure Access
   /investigate/v2/pdns/name/{domain}:
     get:
       description: The Passive DNS endpoint provides historical data from the Secure
@@ -4755,7 +4668,6 @@ paths:
       summary: Get Resource Records for Name
       tags:
       - Passive DNS
-      - Secure Access
   /investigate/v2/pdns/raw/{anystring}:
     get:
       description: Get the Resource Record (RR) data for DNS responses, and categorization
@@ -4830,7 +4742,6 @@ paths:
       summary: Get Resource Records for Raw Data
       tags:
       - Passive DNS
-      - Secure Access
   /investigate/v2/recommendations/name/{domain}.json:
     get:
       description: 'List the co-occurences for the specified domain.
@@ -4900,7 +4811,6 @@ paths:
       summary: Get Recommendations by Name
       tags:
       - Co-occurrences for a Domain
-      - Secure Access
   /investigate/v2/sample/{hash}:
     get:
       description: 'Gather the information from the /samples endpoint, then pivot
@@ -4963,7 +4873,6 @@ paths:
       summary: Get Samples for Hash
       tags:
       - Cisco Secure Malware Analytics Integration
-      - Secure Access
   /investigate/v2/sample/{hash}/artifacts:
     get:
       description: 'Other samples associated with this sample. The sample data does
@@ -5024,7 +4933,6 @@ paths:
       summary: Get Samples for Hash Artifacts
       tags:
       - Cisco Secure Malware Analytics Integration
-      - Secure Access
   /investigate/v2/sample/{hash}/behaviors:
     get:
       description: 'Get the information about specific actions or unique properties
@@ -5096,7 +5004,6 @@ paths:
       summary: Get Samples for Hash Behaviors
       tags:
       - Cisco Secure Malware Analytics Integration
-      - Secure Access
   /investigate/v2/sample/{hash}/connections:
     get:
       description: Information about network activity associated with this sample,
@@ -5164,7 +5071,6 @@ paths:
       summary: Get Samples for Hash Connections
       tags:
       - Cisco Secure Malware Analytics Integration
-      - Secure Access
   /investigate/v2/samples/{destination}:
     get:
       description: 'Specify a domain, IP, or URL. Use the destination to search for
@@ -5253,7 +5159,6 @@ paths:
       summary: Get Samples for Domain, IP, or URL
       tags:
       - Cisco Secure Malware Analytics Integration
-      - Secure Access
   /investigate/v2/search/{expression}:
     get:
       description: List the newly seen domains that match a regular expression pattern.
@@ -5357,7 +5262,6 @@ paths:
       summary: Get Domains by Search
       tags:
       - Search Domain
-      - Secure Access
   /investigate/v2/security/name/{domain}:
     get:
       description: 'List multiple scores or security features for a domain. You can
@@ -5593,7 +5497,6 @@ paths:
       summary: Get Security Score Information for Domain
       tags:
       - Security Information for a Domain
-      - Secure Access
   /investigate/v2/subdomains/{domain}:
     get:
       description: 'Get the subdomains of a given domain. If there is no subdomain
@@ -5663,7 +5566,6 @@ paths:
       summary: Get Subdomains for Domain
       tags:
       - Subdomains for a Domain
-      - Secure Access
   /investigate/v2/timeline/{name}:
     get:
       description: 'List the historical tagging timeline for a given IP, domain, or
@@ -5749,7 +5651,6 @@ paths:
       summary: Get Tagging Timeline for Destination
       tags:
       - Tagging Timeline
-      - Secure Access
   /investigate/v2/topmillion:
     get:
       description: 'List the most seen domains in Secure Access. You can download
@@ -5842,7 +5743,6 @@ paths:
       summary: Get Top Most Seen Domains
       tags:
       - Popularity List-Top Million Domains
-      - Secure Access
   /investigate/v2/whois/{domain}:
     get:
       description: 'Get the WHOIS information for the specified email addresses,
@@ -6009,7 +5909,6 @@ paths:
       summary: Get WHOIS Information for Domain
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /investigate/v2/whois/{domain}/history:
     get:
       description: 'Get a standard WHOIS response record for a single domain with
@@ -6148,7 +6047,6 @@ paths:
       summary: Get WHOIS History for Domain
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /investigate/v2/whois/emails/{email}:
     get:
       description: 'Get the email address or addresses of the registrar for the domain
@@ -6267,7 +6165,6 @@ paths:
       summary: Get WHOIS Email Information
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /investigate/v2/whois/nameservers:
     get:
       description: 'Get WHOIS information for the nameservers. To search by multiple
@@ -6358,7 +6255,6 @@ paths:
       summary: Get WHOIS Information for Nameservers
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /investigate/v2/whois/nameservers/{nameserver}:
     get:
       description: 'Get WHOIS information for the nameserver.
@@ -6450,7 +6346,6 @@ paths:
       summary: Get WHOIS Information for Nameserver
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /investigate/v2/whois/search/{searchField}/{regexExpression}:
     get:
       description: 'Performs a regular expression (RegEx) search on the WHOIS data
@@ -6738,7 +6633,6 @@ paths:
       summary: Get WHOIS Information Search
       tags:
       - WHOIS Information for a Domain
-      - Secure Access
   /policies/v2/applicationCategories:
     get:
       description: Get the Application Categories for the organization.
@@ -6774,7 +6668,6 @@ paths:
       summary: List Application Categories
       tags:
       - Application Categories
-      - Secure Access
   /policies/v2/applicationLists:
     get:
       description: Get the application lists and the number of application lists in
@@ -6815,22 +6708,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:read
       summary: Get Application Lists
       tags:
       - Application Lists
-      - Secure Access
     post:
       description: Create an application list for the organization.
       operationId: createApplicationList
@@ -6862,7 +6754,7 @@ paths:
                 isDefault: 'false'
                 modifiedAt: '2024-05-24T19:22:53+00:00'
               schema:
-                $ref: '#/components/schemas/applicationListsApIsApplicationList'
+                $ref: '#/components/schemas/applicationListsApplicationList'
           description: OK
           headers:
             Content-Type:
@@ -6870,22 +6762,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:write
       summary: Create Application List
       tags:
       - Application Lists
-      - Secure Access
   /policies/v2/applicationLists/{applicationListId}:
     delete:
       description: Delete the application list in the organization.
@@ -6927,22 +6818,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:write
       summary: Delete Application List
       tags:
       - Application Lists
-      - Secure Access
     get:
       description: Get the properties of the application list.
       operationId: getApplicationList
@@ -6962,7 +6852,7 @@ paths:
                 isDefault: 'false'
                 modifiedAt: '2024-05-24T19:22:53+00:00'
               schema:
-                $ref: '#/components/schemas/applicationListsApIsApplicationList'
+                $ref: '#/components/schemas/applicationListsApplicationList'
           description: OK
           headers:
             Content-Type:
@@ -6970,22 +6860,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:read
       summary: Get Application List
       tags:
       - Application Lists
-      - Secure Access
     put:
       description: Update the properties of the application list.
       operationId: putApplicationList
@@ -7019,7 +6908,7 @@ paths:
                 isDefault: 'false'
                 modifiedAt: '2024-05-24T19:22:53+00:00'
               schema:
-                $ref: '#/components/schemas/applicationListsApIsApplicationList'
+                $ref: '#/components/schemas/applicationListsApplicationList'
           description: OK
           headers:
             Content-Type:
@@ -7027,22 +6916,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:write
       summary: Update Application List
       tags:
       - Application Lists
-      - Secure Access
   /policies/v2/applications/usage:
     get:
       description: Get the list of application usage information for the application
@@ -7082,22 +6970,21 @@ paths:
             Date:
               $ref: '#/components/headers/Date'
         '400':
-          $ref: '#/components/responses/applicationListsApIs400Error'
+          $ref: '#/components/responses/applicationLists400Error'
         '401':
-          $ref: '#/components/responses/applicationListsApIs401Error'
+          $ref: '#/components/responses/applicationLists401Error'
         '403':
-          $ref: '#/components/responses/applicationListsApIs403Error'
+          $ref: '#/components/responses/applicationLists403Error'
         '404':
-          $ref: '#/components/responses/applicationListsApIs404Error'
+          $ref: '#/components/responses/applicationLists404Error'
         '500':
-          $ref: '#/components/responses/applicationListsApIs500Error'
+          $ref: '#/components/responses/applicationLists500Error'
       security:
       - oauthFlow:
         - policies.applicationlists:read
       summary: Get Usage of Applications
       tags:
       - Application Lists
-      - Secure Access
   /policies/v2/categorySettings:
     get:
       description: Get all Content Category settings in the organization.
@@ -7133,7 +7020,6 @@ paths:
       summary: List Content Categories
       tags:
       - Content Categories
-      - Secure Access
   /policies/v2/destinationlists:
     get:
       description: Get the destination lists in your organization.
@@ -7196,7 +7082,6 @@ paths:
       summary: Get Destination Lists
       tags:
       - Destination Lists
-      - Secure Access
     post:
       description: Create a destination list in your organization.
       operationId: createDestinationList
@@ -7285,7 +7170,6 @@ paths:
       summary: Create Destination List
       tags:
       - Destination Lists
-      - Secure Access
   /policies/v2/destinationlists/{destinationListId}:
     delete:
       description: Delete a destination list from your organization.
@@ -7325,7 +7209,6 @@ paths:
       summary: Delete Destination List
       tags:
       - Destination Lists
-      - Secure Access
     get:
       description: Get a destination list.
       operationId: getDestinationList
@@ -7372,7 +7255,6 @@ paths:
       summary: Get Destination List
       tags:
       - Destination Lists
-      - Secure Access
     patch:
       description: Update a destination list in your organization.
       operationId: updateDestinationLists
@@ -7433,7 +7315,6 @@ paths:
       summary: Update Destination List
       tags:
       - Destination Lists
-      - Secure Access
   /policies/v2/destinationlists/{destinationListId}/destinations:
     get:
       description: Get destinations in a destination list.
@@ -7484,7 +7365,6 @@ paths:
       summary: Get Destinations in Destination List
       tags:
       - Destinations
-      - Secure Access
     post:
       description: Add destinations to a destination list.
       operationId: createDestinations
@@ -7570,7 +7450,6 @@ paths:
       summary: Add Destinations to Destination List
       tags:
       - Destinations
-      - Secure Access
   /policies/v2/destinationlists/{destinationListId}/destinations/remove:
     delete:
       description: 'Remove destinations from the destination list.
@@ -7645,7 +7524,6 @@ paths:
       summary: Delete Destinations from Destination List
       tags:
       - Destinations
-      - Secure Access
   /policies/v2/feeds:
     get:
       description: List the threat feeds for the third-party and custom security vendors
@@ -7864,7 +7742,6 @@ paths:
       summary: List GeoLocations
       tags:
       - Access Rules
-      - Secure Access
   /policies/v2/ipsSignatureProfiles:
     get:
       description: 'Get the list of custom and system-defined IPS profiles for the
@@ -7921,7 +7798,6 @@ paths:
       summary: List IPS Profiles
       tags:
       - IPS Profiles
-      - Secure Access
     post:
       description: Create a custom IPS profile in the organization.
       operationId: createCustomIpsProfile
@@ -7955,7 +7831,6 @@ paths:
       summary: Create Custom IPS Profile
       tags:
       - IPS Profiles
-      - Secure Access
   /policies/v2/ipsSignatureProfiles/{id}:
     delete:
       description: Delete the custom IPS profile in the organization.
@@ -7986,7 +7861,6 @@ paths:
       summary: Delete Custom IPS Profile
       tags:
       - IPS Profiles
-      - Secure Access
     get:
       description: Get the IPS profile in the organization.
       operationId: getIpsProfile
@@ -8020,7 +7894,6 @@ paths:
       summary: Get IPS Profile
       tags:
       - IPS Profiles
-      - Secure Access
     patch:
       description: Update the IPS profile in the organization.
       operationId: updateIpsProfile
@@ -8056,7 +7929,6 @@ paths:
       summary: Update IPS Profile
       tags:
       - IPS Profiles
-      - Secure Access
   /policies/v2/ipsSignatureProfiles/{id}/signatures:
     get:
       description: Get the IPS signatures associated with the IPS profile.
@@ -8123,7 +7995,6 @@ paths:
       summary: Get Signatures in IPS Profile
       tags:
       - IPS Profiles
-      - Secure Access
   /policies/v2/objects/networkObjectGroups:
     get:
       description: Get the Network Object Groups for the organization.
@@ -8212,7 +8083,6 @@ paths:
       summary: List Network Object Groups
       tags:
       - Network Object Groups
-      - Secure Access
     post:
       description: Create a Network Object Group in the organization.
       operationId: createNetworkObjectGroup
@@ -8259,7 +8129,6 @@ paths:
       summary: Create Network Object Group
       tags:
       - Network Object Groups
-      - Secure Access
   /policies/v2/objects/networkObjectGroups/{networkObjectGroupId}:
     delete:
       description: Delete a Network Object Group in the organization.
@@ -8290,7 +8159,6 @@ paths:
       summary: Delete Network Object Group
       tags:
       - Network Object Groups
-      - Secure Access
     get:
       description: Get a Network Object Group in the organization.
       operationId: getNetworkObjectGroup
@@ -8337,7 +8205,6 @@ paths:
       summary: Get Network Object Group
       tags:
       - Network Object Groups
-      - Secure Access
     put:
       description: Update a Network Object Group in the organization.
       operationId: updateNetworkObjectGroup
@@ -8389,7 +8256,6 @@ paths:
       summary: Update Network Object Group
       tags:
       - Network Object Groups
-      - Secure Access
   /policies/v2/objects/networkObjectGroups/{networkObjectGroupId}/references:
     get:
       description: 'Get the references for the Network Object Group in the organization.
@@ -8419,7 +8285,6 @@ paths:
       summary: Get References for Network Object Group
       tags:
       - Network Object Groups
-      - Secure Access
   /policies/v2/objects/networkObjectGroups/references:
     get:
       description: 'Get the references for the Network Object Groups in the organization.
@@ -8448,7 +8313,6 @@ paths:
       summary: List References for Network Object Groups
       tags:
       - Network Object Groups
-      - Secure Access
   /policies/v2/objects/networkObjects:
     get:
       description: Get the Network Objects in the organization.
@@ -8523,7 +8387,6 @@ paths:
       summary: List Network Objects
       tags:
       - Network Objects
-      - Secure Access
     post:
       description: Create a Network Object in the organization.
       operationId: createNetworkObject
@@ -8569,7 +8432,6 @@ paths:
       summary: Create Network Object
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/networkObjects/{networkObjectId}:
     delete:
       description: Delete a Network Object in the organization.
@@ -8600,7 +8462,6 @@ paths:
       summary: Delete Network Object
       tags:
       - Network Objects
-      - Secure Access
     get:
       description: Get a Network Object in the organization.
       operationId: getNetworkObject
@@ -8646,7 +8507,6 @@ paths:
       summary: Get Network Object
       tags:
       - Network Objects
-      - Secure Access
     put:
       description: Update a Network Object in the organization.
       operationId: updateNetworkObject
@@ -8694,7 +8554,6 @@ paths:
       summary: Update Network Object
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/networkObjects/{networkObjectId}/references:
     get:
       description: 'Get the references for the Network Object in the organization.
@@ -8723,7 +8582,6 @@ paths:
       summary: Get References for Network Object
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/networkObjects/references:
     get:
       description: 'Get the references for the Network Objects in the organization.
@@ -8752,7 +8610,6 @@ paths:
       summary: List References for Network Objects
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/networkObjects/upload:
     post:
       description: Upload a CSV file with the properties that are required for creating
@@ -8775,7 +8632,6 @@ paths:
       summary: Upload Network Objects
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/networkObjects/validate:
     post:
       description: Validate a CSV file that includes the properties for creating the
@@ -8824,7 +8680,6 @@ paths:
       summary: Validate Network Objects
       tags:
       - Network Objects
-      - Secure Access
   /policies/v2/objects/serviceObjectGroups:
     get:
       description: Get the Service Object Groups in the organization.
@@ -8918,7 +8773,6 @@ paths:
       summary: List Service Object Groups
       tags:
       - Service Object Groups
-      - Secure Access
     post:
       description: Create a Service Object Group in the organization.
       operationId: createServiceObjectGroup
@@ -8965,7 +8819,6 @@ paths:
       summary: Create Service Object Group
       tags:
       - Service Object Groups
-      - Secure Access
   /policies/v2/objects/serviceObjectGroups/{serviceObjectGroupId}:
     delete:
       description: Delete a Service Object Group in the organization.
@@ -8996,7 +8849,6 @@ paths:
       summary: Delete Service Object Group
       tags:
       - Service Object Groups
-      - Secure Access
     get:
       description: Get a Service Object Group in the organization.
       operationId: getServiceObjectGroup
@@ -9043,7 +8895,6 @@ paths:
       summary: Get Service Object Group
       tags:
       - Service Object Groups
-      - Secure Access
     put:
       description: Update a Service Object Group in the organization.
       operationId: updateServiceObjectGroup
@@ -9092,7 +8943,6 @@ paths:
       summary: Update Service Object Group
       tags:
       - Service Object Groups
-      - Secure Access
   /policies/v2/objects/serviceObjectGroups/{serviceObjectGroupId}/references:
     get:
       description: 'Get the references for a Service Object Group in the organization.
@@ -9122,7 +8972,6 @@ paths:
       summary: Get References for Service Object Group
       tags:
       - Service Object Groups
-      - Secure Access
   /policies/v2/objects/serviceObjectGroups/references:
     get:
       description: 'Get all references for the Service Object Groups in the organization.
@@ -9151,7 +9000,6 @@ paths:
       summary: List References for Service Object Groups
       tags:
       - Service Object Groups
-      - Secure Access
   /policies/v2/objects/serviceObjects:
     get:
       description: Get the Service Objects in the organization.
@@ -9233,7 +9081,6 @@ paths:
       summary: List Service Objects
       tags:
       - Service Objects
-      - Secure Access
     post:
       description: Create a Service Object for the organization.
       operationId: createServiceObject
@@ -9279,7 +9126,6 @@ paths:
       summary: Create Service Object
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/serviceObjects/{serviceObjectId}:
     delete:
       description: Delete a Service Object in the organization.
@@ -9310,7 +9156,6 @@ paths:
       summary: Delete Service Object
       tags:
       - Service Objects
-      - Secure Access
     get:
       description: Get a Service Object in the organization.
       operationId: getServiceObject
@@ -9356,7 +9201,6 @@ paths:
       summary: Get Service Object
       tags:
       - Service Objects
-      - Secure Access
     put:
       description: Update a Service Object in the organization.
       operationId: updateServiceObject
@@ -9404,7 +9248,6 @@ paths:
       summary: Update Service Object
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/serviceObjects/{serviceObjectId}/references:
     get:
       description: 'Get the references for a Service Object in the organization.
@@ -9434,7 +9277,6 @@ paths:
       summary: Get References for Service Object
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/serviceObjects/references:
     get:
       description: 'Get the references for the Service Objects in the organization.
@@ -9463,7 +9305,6 @@ paths:
       summary: List References for Service Objects
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/serviceObjects/upload:
     post:
       description: Upload a CSV file with the properties that are required for creating
@@ -9486,7 +9327,6 @@ paths:
       summary: Upload Service Objects
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/serviceObjects/validate:
     post:
       description: Validate a CSV file that includes the properties for creating the
@@ -9532,7 +9372,6 @@ paths:
       summary: Validate Service Objects
       tags:
       - Service Objects
-      - Secure Access
   /policies/v2/objects/unifiedNetworkObjects:
     get:
       description: Get the Network Objects and Network Object Groups in the organization.
@@ -9598,7 +9437,6 @@ paths:
       summary: List Network Objects and Network Groups
       tags:
       - Unified Objects
-      - Secure Access
   /policies/v2/objects/unifiedServiceObjects:
     get:
       description: Get the Service Objects and Service Object Groups in the organization.
@@ -9663,7 +9501,6 @@ paths:
       summary: List Service Objects and Service Groups
       tags:
       - Unified Objects
-      - Secure Access
   /policies/v2/privateResourceGroups:
     get:
       description: List the Private Resource Groups for the organization.
@@ -9713,7 +9550,6 @@ paths:
       summary: List Resource Groups
       tags:
       - Resource Groups
-      - Secure Access
     post:
       description: 'Create a Private Resource Group for the organization.
 
@@ -9770,7 +9606,6 @@ paths:
       summary: Create Resource Group
       tags:
       - Resource Groups
-      - Secure Access
   /policies/v2/privateResourceGroups/{id}:
     delete:
       description: 'Delete the Private Resource Group from the organization.
@@ -9823,7 +9658,6 @@ paths:
       summary: Delete Resource Group
       tags:
       - Resource Groups
-      - Secure Access
     get:
       description: Get the details about a Private Resource Group.
       operationId: getPrivateResourceGroup
@@ -9868,7 +9702,6 @@ paths:
       summary: Get Resource Group
       tags:
       - Resource Groups
-      - Secure Access
     put:
       description: Update the `name` and `description` properties on the Private Resource
         Group.
@@ -9926,7 +9759,6 @@ paths:
       summary: Update Resource Group
       tags:
       - Resource Groups
-      - Secure Access
   /policies/v2/privateResources:
     get:
       description: List the Private Resources for the organization.
@@ -10001,7 +9833,6 @@ paths:
       summary: List Private Resources
       tags:
       - Private Resources
-      - Secure Access
     post:
       description: 'Create a Private Resource for the organization. You can add at
         most 1000 Private Resources to an organization.
@@ -10101,7 +9932,6 @@ paths:
       summary: Create Private Resource
       tags:
       - Private Resources
-      - Secure Access
   /policies/v2/privateResources/{id}:
     delete:
       description: 'Delete a Private Resource. Remove the Private Resource from any
@@ -10155,7 +9985,6 @@ paths:
       summary: Delete Private Resource
       tags:
       - Private Resources
-      - Secure Access
     get:
       description: Get the details about a Private Resource.
       operationId: getPrivateResource
@@ -10221,7 +10050,6 @@ paths:
       summary: Get Private Resource
       tags:
       - Private Resources
-      - Secure Access
     put:
       description: 'Update the properties on a Private Resource.
 
@@ -10315,7 +10143,6 @@ paths:
       summary: Update Private Resource
       tags:
       - Private Resources
-      - Secure Access
   /policies/v2/rules:
     get:
       description: List the rules in the policy for the organization.
@@ -10367,7 +10194,6 @@ paths:
       summary: List Rules
       tags:
       - Access Rules
-      - Secure Access
     post:
       description: Create a rule on the policy for the organization.
       operationId: addRule
@@ -10431,7 +10257,6 @@ paths:
       summary: Create Rule
       tags:
       - Access Rules
-      - Secure Access
     put:
       description: Enable or disable the rules on the policy.
       operationId: putRules
@@ -10478,7 +10303,6 @@ paths:
       summary: Enable Rules
       tags:
       - Access Rules
-      - Secure Access
   /policies/v2/rules/{ruleId}:
     delete:
       description: Delete a rule on the policy for the organization.
@@ -10509,7 +10333,6 @@ paths:
       summary: Delete Rule
       tags:
       - Access Rules
-      - Secure Access
     get:
       description: Get the details about the rule.
       operationId: getRule
@@ -10573,7 +10396,6 @@ paths:
       summary: Get Rule
       tags:
       - Access Rules
-      - Secure Access
     put:
       description: Update the properties on the rule.
       operationId: putRule
@@ -10639,7 +10461,6 @@ paths:
       summary: Update Rule
       tags:
       - Access Rules
-      - Secure Access
   /policies/v2/securityProfiles:
     get:
       description: Get all Security profiles in the organization.
@@ -10675,7 +10496,6 @@ paths:
       summary: List Security Profiles
       tags:
       - Security Profiles
-      - Secure Access
   /policies/v2/securityProfiles/{profileId}:
     get:
       description: Get the properties of the Security Profile.
@@ -10711,7 +10531,6 @@ paths:
       summary: Get Security Profile
       tags:
       - Security Profiles
-      - Secure Access
   /policies/v2/settingTypes:
     get:
       description: List the policy setting types.
@@ -10744,7 +10563,6 @@ paths:
       summary: List Policy Setting Types
       tags:
       - Rule Settings and Defaults
-      - Secure Access
   /policies/v2/settingTypes/{settingName}:
     get:
       description: Get the type of the policy setting.
@@ -10779,7 +10597,6 @@ paths:
       summary: Get Policy Setting Type
       tags:
       - Rule Settings and Defaults
-      - Secure Access
   /policies/v2/settings:
     get:
       description: Get the global policy settings and rule defaults for the organization.
@@ -10815,7 +10632,6 @@ paths:
       summary: Get Rule Defaults and Global Policy Settings
       tags:
       - Rule Settings and Defaults
-      - Secure Access
     put:
       description: Update the rule defaults and global policy settings.
       operationId: putPolicySettings
@@ -10862,7 +10678,6 @@ paths:
       summary: Update Rule Defaults and Global Policy Settings
       tags:
       - Rule Settings and Defaults
-      - Secure Access
   /policies/v2/settings/{settingName}:
     get:
       description: Get the policy setting identified by the setting name.
@@ -10902,7 +10717,6 @@ paths:
       summary: Get Policy Setting
       tags:
       - Rule Settings and Defaults
-      - Secure Access
     put:
       description: Update the policy setting.
       operationId: putPolicySetting
@@ -10951,7 +10765,6 @@ paths:
       summary: Update Policy Setting
       tags:
       - Rule Settings and Defaults
-      - Secure Access
   /policies/v2/tenantControls/profiles:
     get:
       description: Get the Tenant Controls profiles for the organization.
@@ -10987,7 +10800,6 @@ paths:
       summary: List Tenant Controls Profiles
       tags:
       - Tenant Controls Profiles
-      - Secure Access
   /reports/v2/activity:
     get:
       description: 'List all activities (dns/proxy/firewall/ip/intrusion/ztna/decryption)
@@ -11117,7 +10929,6 @@ paths:
       summary: Get Activities (All)
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/amp-retrospective:
     get:
       description: 'List all AMP retrospective activity within the timeframe.
@@ -11176,7 +10987,6 @@ paths:
       summary: Get Activity AMP Retrospective
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/decryption:
     get:
       description: 'List all decryption entries within the timeframe.
@@ -11254,7 +11064,6 @@ paths:
       summary: Get Activity Decryption
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/dns:
     get:
       description: 'List all DNS entries within the timeframe.
@@ -11362,7 +11171,6 @@ paths:
       summary: Get Activity DNS
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/firewall:
     get:
       description: 'List all firewall activity within the timeframe.
@@ -11456,7 +11264,6 @@ paths:
       summary: Get Activity Firewall
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/intrusion:
     get:
       description: 'List all Intrusion Prevention System (IPS) activity within the
@@ -11551,7 +11358,6 @@ paths:
       summary: Get Activity Intrusion
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/ip:
     get:
       description: '(Deprecated) List all IP activity within the timeframe.
@@ -11605,7 +11411,6 @@ paths:
       summary: Get Activity IP
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/proxy:
     get:
       description: 'List all proxy entries within the timeframe.
@@ -11752,7 +11557,6 @@ paths:
       summary: Get Activity Proxy
       tags:
       - Activity
-      - Secure Access
   /reports/v2/activity/ztna:
     get:
       description: 'List all Zero Trust Network Access (ZTNA) entries within the timeframe.
@@ -11845,7 +11649,6 @@ paths:
       summary: Get Activity ZTNA
       tags:
       - Activity
-      - Secure Access
   /reports/v2/apiUsage/keys:
     get:
       description: Get the API key usage information, including the total number of
@@ -11902,7 +11705,6 @@ paths:
       summary: Get Keys
       tags:
       - API Usage Report
-      - Secure Access
   /reports/v2/apiUsage/requests:
     get:
       description: 'Get the information about the API requests for the organization
@@ -11963,7 +11765,6 @@ paths:
       summary: Get Requests
       tags:
       - API Usage Report
-      - Secure Access
   /reports/v2/apiUsage/responses:
     get:
       description: 'Get the information about the API responses for the organization
@@ -12024,7 +11825,6 @@ paths:
       summary: Get Responses
       tags:
       - API Usage Report
-      - Secure Access
   /reports/v2/apiUsage/summary:
     get:
       description: Get the total number API requests, and the counts of the successful
@@ -12071,7 +11871,6 @@ paths:
       summary: Get Summary
       tags:
       - API Usage Report
-      - Secure Access
   /reports/v2/app-connectors/detailed-stats-timerange:
     get:
       description: 'Get detailed Resource Connector statistics for the connector IDs,
@@ -12120,7 +11919,6 @@ paths:
       summary: Get Detailed Resource Connector Statistics
       tags:
       - Resource Connectors
-      - Secure Access
   /reports/v2/app-connectors/groups/detailed-stats-timerange:
     get:
       description: 'Get detailed Resource Connector Group statistics for either group
@@ -12171,7 +11969,6 @@ paths:
       summary: Get Detailed Resource Connector Group Statistics
       tags:
       - Resource Connectors
-      - Secure Access
   /reports/v2/app-connectors/groups/overloaded-count:
     get:
       description: 'Get the count of the overloaded groups that have a CPU Threshold
@@ -12219,7 +12016,6 @@ paths:
       summary: Get Count of Overloaded Groups
       tags:
       - Resource Connectors
-      - Secure Access
   /reports/v2/appDiscovery/applicationCategories:
     get:
       description: List all application categories.
@@ -12254,7 +12050,6 @@ paths:
       summary: List Application Categories
       tags:
       - Application Categories
-      - Secure Access
   /reports/v2/appDiscovery/applications:
     get:
       description: List all discovered applications.
@@ -12328,7 +12123,6 @@ paths:
       summary: List Applications
       tags:
       - Applications
-      - Secure Access
     patch:
       description: Update the labels for the applications.
       operationId: patchApplications
@@ -12360,7 +12154,6 @@ paths:
       summary: Update Applications
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/applications/{applicationId}:
     get:
       description: Get an application by ID.
@@ -12415,7 +12208,6 @@ paths:
       summary: Get Application
       tags:
       - Applications
-      - Secure Access
     patch:
       description: Update the label for the application. Provide an application label
         in the request body.
@@ -12482,7 +12274,6 @@ paths:
       summary: Update Application
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/applications/{applicationId}/attributes:
     get:
       description: List all attributes for the application.
@@ -12530,7 +12321,6 @@ paths:
       summary: List Application Attributes
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/applications/{applicationId}/identities:
     get:
       description: List all identities for the application.
@@ -12578,7 +12368,6 @@ paths:
       summary: List Application Identities
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/applications/{applicationId}/risk:
     get:
       description: Get the risk for the application.
@@ -12628,7 +12417,6 @@ paths:
       summary: Get Application Risk
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/applications/info:
     get:
       description: List the information about the applications.
@@ -12706,7 +12494,6 @@ paths:
       summary: List Information for Applications
       tags:
       - Applications
-      - Secure Access
   /reports/v2/appDiscovery/protocols:
     get:
       description: List all protocols.
@@ -12750,7 +12537,6 @@ paths:
       summary: List Protocols
       tags:
       - Protocols
-      - Secure Access
   /reports/v2/appDiscovery/protocols/{protocolId}:
     get:
       description: Get protocol by ID.
@@ -12790,7 +12576,6 @@ paths:
       summary: Get Protocol
       tags:
       - Protocols
-      - Secure Access
   /reports/v2/appDiscovery/protocols/{protocolId}/identities:
     get:
       description: List identities for a specific protocol.
@@ -12836,7 +12621,6 @@ paths:
       summary: List Protocol Identities
       tags:
       - Identities
-      - Secure Access
   /reports/v2/applications:
     get:
       description: 'List the applications.
@@ -12890,7 +12674,6 @@ paths:
       summary: Get Applications
       tags:
       - Utility
-      - Secure Access
   /reports/v2/bandwidth-by-hour:
     get:
       description: 'List the bandwidth in bytes within the timeframe. Only returns
@@ -12962,7 +12745,6 @@ paths:
       summary: Get Bandwidth by Hour (All)
       tags:
       - Bandwidth by Hour
-      - Secure Access
   /reports/v2/bandwidth-by-timerange:
     get:
       description: 'List the bandwidth in bytes within the timeframe. Only returns
@@ -13035,7 +12817,6 @@ paths:
       summary: Get Bandwidth by Timerange (All)
       tags:
       - Bandwidth by Timerange
-      - Secure Access
   /reports/v2/categories:
     get:
       description: 'List the categories.
@@ -13091,7 +12872,6 @@ paths:
       summary: Get Categories
       tags:
       - Utility
-      - Secure Access
   /reports/v2/categories-by-hour:
     get:
       description: 'List the activity volume within the timeframe by type of category.
@@ -13169,7 +12949,6 @@ paths:
       summary: Get Requests by Hour and Category (All)
       tags:
       - Organization Requests by Hour and Category
-      - Secure Access
   /reports/v2/categories-by-hour/{type}:
     get:
       description: 'List the activity volume for the type of category within the timeframe.
@@ -13248,7 +13027,6 @@ paths:
       summary: Get Requests by Hour and Category
       tags:
       - Organization Requests by Hour and Category
-      - Secure Access
   /reports/v2/categories-by-timerange:
     get:
       description: 'List the activity volume within the timeframe by category.
@@ -13326,7 +13104,6 @@ paths:
       summary: Get Requests by Timerange and Category (All)
       tags:
       - Organization Requests by Timerange and Category
-      - Secure Access
   /reports/v2/categories-by-timerange/{type}:
     get:
       description: 'List the activity volume within the timeframe by category.
@@ -13405,7 +13182,6 @@ paths:
       summary: Get Requests by Timerange and Category
       tags:
       - Organization Requests by Timerange and Category
-      - Secure Access
   /reports/v2/deployment-status:
     get:
       description: 'List the deployment status within the timeframe.
@@ -13463,7 +13239,6 @@ paths:
       summary: Get Deployment Status
       tags:
       - Deployment Status
-      - Secure Access
   /reports/v2/identities:
     get:
       description: 'List the identities.
@@ -13519,7 +13294,6 @@ paths:
       summary: Get Identities
       tags:
       - Utility
-      - Secure Access
     post:
       description: 'Get the identities information by providing a list of identity
         IDs in the request body.
@@ -13590,7 +13364,6 @@ paths:
       summary: Get Identities By IDs
       tags:
       - Utility
-      - Secure Access
   /reports/v2/identities/{identityid}:
     get:
       description: 'Get identity by identity ID.
@@ -13641,7 +13414,6 @@ paths:
       summary: Get Identity
       tags:
       - Utility
-      - Secure Access
   /reports/v2/identity-distribution:
     get:
       description: 'List the number of requests by identity types.
@@ -13720,7 +13492,6 @@ paths:
       summary: Get Identity Distribution (All)
       tags:
       - Identity Distribution
-      - Secure Access
   /reports/v2/identity-distribution/{type}:
     get:
       description: 'List the number of requests by identity for the type of traffic.
@@ -13801,7 +13572,6 @@ paths:
       summary: Get Identity Distribution By Type
       tags:
       - Identity Distribution
-      - Secure Access
   /reports/v2/private-resources/detailed-stats-identities:
     get:
       description: 'Get detailed identity access statistics for a private resource,
@@ -13850,7 +13620,6 @@ paths:
       summary: Get Private Resource Identities Access Statistics
       tags:
       - Private Resource
-      - Secure Access
   /reports/v2/private-resources/detailed-stats-timerange:
     get:
       description: 'Get the detailed access statistics for a private resource, including
@@ -13899,7 +13668,6 @@ paths:
       summary: Get Private Resource Access Statistics
       tags:
       - Private Resource
-      - Secure Access
   /reports/v2/private-resources/summary-stats:
     get:
       description: 'Get summary statistics of the hits count, the number of identities
@@ -13949,7 +13717,6 @@ paths:
       summary: Get Private Resource Summary Access Statistics
       tags:
       - Private Resource
-      - Secure Access
   /reports/v2/remote-access-events:
     get:
       description: 'List the events logged by remote access VPN.
@@ -14025,7 +13792,6 @@ paths:
       summary: Get Remote Access Events
       tags:
       - Remote Access
-      - Secure Access
   /reports/v2/requests-by-appconnector:
     get:
       description: 'Get the count of the total requests for each Resource Connector.
@@ -14095,7 +13861,6 @@ paths:
       summary: Get Total Requests by Resource Connector
       tags:
       - Requests Resource Connector
-      - Secure Access
   /reports/v2/requests-by-appconnector-group:
     get:
       description: 'Get the count of the total requests for the Resource Connector
@@ -14167,7 +13932,6 @@ paths:
       summary: Get Total Requests by Resource Connector Group
       tags:
       - Requests Resource Connector
-      - Secure Access
   /reports/v2/requests-by-hour:
     get:
       description: 'List the activity volume within the timeframe.
@@ -14246,7 +14010,6 @@ paths:
       summary: Get Requests by Hour (All)
       tags:
       - Organization Requests by Hour
-      - Secure Access
   /reports/v2/requests-by-hour/{type}:
     get:
       description: 'List the activity volume within the timeframe.
@@ -14326,7 +14089,6 @@ paths:
       summary: Get Requests by Hour
       tags:
       - Organization Requests by Hour
-      - Secure Access
   /reports/v2/requests-by-timerange:
     get:
       description: 'List the activity volume within the timeframe.
@@ -14408,7 +14170,6 @@ paths:
       summary: Get Requests by Timerange (All)
       tags:
       - Organization Requests by Timerange
-      - Secure Access
   /reports/v2/requests-by-timerange/{type}:
     get:
       description: 'List the activity volume within the timeframe.
@@ -14488,7 +14249,6 @@ paths:
       summary: Get Requests by Timerange
       tags:
       - Organization Requests by Timerange
-      - Secure Access
   /reports/v2/requests-summary/appconnector-groups:
     get:
       description: 'Get the summary of the request counts for the Resource Connector
@@ -14556,7 +14316,6 @@ paths:
       summary: Get Requests Summary for Resource Connector Groups
       tags:
       - Requests Summary Resource Connector Groups
-      - Secure Access
   /reports/v2/rules-activity:
     get:
       description: 'Get details about events related to the organization''s rules
@@ -14614,7 +14373,6 @@ paths:
       summary: Get the Rules for the Event Activity
       tags:
       - Rules Activity
-      - Secure Access
   /reports/v2/summaries-by-category:
     get:
       description: 'List the summaries of requests by category.
@@ -14702,7 +14460,6 @@ paths:
       summary: Get Summaries by Category (All)
       tags:
       - Summaries by Category
-      - Secure Access
   /reports/v2/summaries-by-category/{type}:
     get:
       description: 'List the summaries by category for the type of request.
@@ -14791,7 +14548,6 @@ paths:
       summary: Get Summaries by Category For Type
       tags:
       - Summaries by Category
-      - Secure Access
   /reports/v2/summaries-by-destination:
     get:
       description: 'List the summaries by destination.
@@ -14875,7 +14631,6 @@ paths:
       summary: Get Summaries by Destination (All)
       tags:
       - Summaries by Destination
-      - Secure Access
   /reports/v2/summaries-by-destination/{type}:
     get:
       description: 'List the summaries by destination for the type of traffic.
@@ -14960,7 +14715,6 @@ paths:
       summary: Get Summaries by Destination For Type
       tags:
       - Summaries by Destination
-      - Secure Access
   /reports/v2/summaries-by-rule/firewall-hitcount:
     get:
       description: 'List the summaries by rule for the policy rule firewall hit count.
@@ -15005,7 +14759,6 @@ paths:
       summary: Get Summaries Rule Firewall Hit Count
       tags:
       - Summaries by Rule
-      - Secure Access
   /reports/v2/summaries-by-rule/hitcount:
     get:
       description: 'List the summaries by rule for the policy rule hit count.
@@ -15050,7 +14803,6 @@ paths:
       summary: Get Summaries Rule Hit Count
       tags:
       - Summaries by Rule
-      - Secure Access
   /reports/v2/summaries-by-rule/intrusion:
     get:
       description: 'List the summaries by rule for the intrusion type.
@@ -15120,7 +14872,6 @@ paths:
       summary: Get Summaries Rule Intrusion
       tags:
       - Summaries by Rule
-      - Secure Access
   /reports/v2/summary:
     get:
       description: 'Get the summary report.
@@ -15201,7 +14952,6 @@ paths:
       summary: Get Summary (All)
       tags:
       - Summary
-      - Secure Access
   /reports/v2/summary/{type}:
     get:
       description: 'Get the summary of requests by the traffic type.
@@ -15284,7 +15034,6 @@ paths:
       summary: Get Summary By Type
       tags:
       - Summary
-      - Secure Access
   /reports/v2/threat-names:
     get:
       description: 'List the threat names.
@@ -15330,7 +15079,6 @@ paths:
       summary: Get Threat Names
       tags:
       - Utility
-      - Secure Access
   /reports/v2/threat-names/{threatnameid}:
     get:
       description: 'Get the threat name by threat ID.
@@ -15376,7 +15124,6 @@ paths:
       summary: Get Threat Name By Threat ID
       tags:
       - Utility
-      - Secure Access
   /reports/v2/threat-types:
     get:
       description: 'List the threat types.
@@ -15422,7 +15169,6 @@ paths:
       summary: Get Threat Types
       tags:
       - Utility
-      - Secure Access
   /reports/v2/threat-types/{threattypeid}:
     get:
       description: 'List the threat types by threat ID.
@@ -15468,7 +15214,6 @@ paths:
       summary: Get Threat Type By Threat ID
       tags:
       - Utility
-      - Secure Access
   /reports/v2/top-categories:
     get:
       description: 'List the categories that received the greatest number of requests.
@@ -15544,7 +15289,6 @@ paths:
       summary: Get Top Categories (All)
       tags:
       - Top Categories
-      - Secure Access
   /reports/v2/top-categories/{type}:
     get:
       description: 'List the categories for the type of traffic that received the
@@ -15622,7 +15366,6 @@ paths:
       summary: Get Top Categories By Type
       tags:
       - Top Categories
-      - Secure Access
   /reports/v2/top-destinations:
     get:
       description: 'List the destinations by the number of requests made to this destination.
@@ -15711,7 +15454,6 @@ paths:
       summary: Get Top Destinations
       tags:
       - Top Destinations
-      - Secure Access
   /reports/v2/top-destinations/{type}:
     get:
       description: 'List the destinations by type of destination and the number of
@@ -15802,7 +15544,6 @@ paths:
       summary: Get Top Destinations By Type
       tags:
       - Top Destinations
-      - Secure Access
   /reports/v2/top-dns-query-types:
     get:
       description: 'List the top types of DNS query.
@@ -15866,7 +15607,6 @@ paths:
       summary: Get Top DNS Query Types
       tags:
       - Top DNS Query Types
-      - Secure Access
   /reports/v2/top-eventtypes:
     get:
       description: 'List the top event types by the number of requests made for each
@@ -15940,7 +15680,6 @@ paths:
       summary: Get Top Event Types (All)
       tags:
       - Top Event Types
-      - Secure Access
   /reports/v2/top-files:
     get:
       description: 'List the top files within the timeframe. Only returns proxy data.
@@ -16016,7 +15755,6 @@ paths:
       summary: Get Top Files (Proxy)
       tags:
       - Top Files
-      - Secure Access
   /reports/v2/top-identities:
     get:
       description: 'List the identities by the number of requests made, sorted in
@@ -16101,7 +15839,6 @@ paths:
       summary: Get Top Identities (All)
       tags:
       - Top Identities
-      - Secure Access
   /reports/v2/top-identities/{type}:
     get:
       description: 'List the identities for the specific traffic type by the number
@@ -16191,7 +15928,6 @@ paths:
       summary: Get Top Identities
       tags:
       - Top Identities
-      - Secure Access
   /reports/v2/top-ips:
     get:
       description: 'List the top IP addresses.
@@ -16252,7 +15988,6 @@ paths:
       summary: Get Top IPs
       tags:
       - Top IPs
-      - Secure Access
   /reports/v2/top-ips/internal:
     get:
       description: 'List the top internal IP addresses.
@@ -16313,7 +16048,6 @@ paths:
       summary: Get Top IPs Internal
       tags:
       - Top IPs
-      - Secure Access
   /reports/v2/top-resources:
     get:
       description: 'List all resources in descending order. Order the collection by
@@ -16375,7 +16109,6 @@ paths:
       summary: Get Top Resources (All)
       tags:
       - Top Resources
-      - Secure Access
   /reports/v2/top-resources/{type}:
     get:
       description: 'List the resources for the type of activity in descending order.
@@ -16439,7 +16172,6 @@ paths:
       summary: Get Top Resources by Type
       tags:
       - Top Resources
-      - Secure Access
   /reports/v2/top-threat-types:
     get:
       description: 'List the top types of threat within the timeframe. Returns both
@@ -16504,7 +16236,6 @@ paths:
       summary: Get Top Threat Types (All)
       tags:
       - Top Threat Types
-      - Secure Access
   /reports/v2/top-threat-types/{type}:
     get:
       description: 'List the top threat-types within the timeframe.
@@ -16569,7 +16300,6 @@ paths:
       summary: Get Top Threat Types By Type
       tags:
       - Top Threat Types
-      - Secure Access
   /reports/v2/top-threats:
     get:
       description: 'Get the top threats within the timeframe. Returns both DNS and
@@ -16634,7 +16364,6 @@ paths:
       summary: Get Top Threats (All)
       tags:
       - Top Threats
-      - Secure Access
   /reports/v2/top-threats/{type}:
     get:
       description: 'Get the top threats within the timeframe.
@@ -16699,7 +16428,6 @@ paths:
       summary: Get Top Threats (By Type)
       tags:
       - Top Threats
-      - Secure Access
   /reports/v2/top-urls:
     get:
       description: 'List the top number of URLs that are requested for a certain domain.
@@ -16774,7 +16502,6 @@ paths:
       summary: Get Top URLs
       tags:
       - Top Destinations
-      - Secure Access
   /reports/v2/total-requests:
     get:
       description: 'Get the count of the total requests.
@@ -16841,7 +16568,6 @@ paths:
       summary: Get Total Requests (All)
       tags:
       - Total Requests
-      - Secure Access
   /reports/v2/total-requests/{type}:
     get:
       description: 'Get the count of the total requests for the request type.
@@ -16908,7 +16634,6 @@ paths:
       summary: Get Total Requests (By Type)
       tags:
       - Total Requests
-      - Secure Access
   /reports/v2/unique-resources:
     get:
       description: 'Get a count of the number of unique resources.
@@ -16951,7 +16676,6 @@ paths:
       summary: Get Unique Resources (All)
       tags:
       - Unique Resources
-      - Secure Access
   /reports/v2/usage/metrics:
     get:
       description: List the usage metrics for the organization.
@@ -17016,7 +16740,6 @@ paths:
       summary: List Usage Metrics
       tags:
       - Usage Metrics
-      - Secure Access
 components:
   headers:
     Content-Type:
@@ -21076,7 +20799,7 @@ components:
           $ref: '#/components/headers/Content-Type'
         Date:
           $ref: '#/components/headers/Date'
-    applicationListsApIs400Error:
+    applicationLists400Error:
       content:
         application/json:
           schema:
@@ -21089,7 +20812,7 @@ components:
                 description: The ID of the request.
                 example: 7d318524-d5a4-4fd8-8b29-ad295b2f035b
                 type: string
-            title: applicationListsApIs400Error
+            title: applicationLists400Error
             type: object
       description: Bad Request
       headers:
@@ -21097,7 +20820,7 @@ components:
           $ref: '#/components/headers/Content-Type'
         Date:
           $ref: '#/components/headers/Date'
-    applicationListsApIs401Error:
+    applicationLists401Error:
       content:
         application/json:
           schema:
@@ -21110,7 +20833,7 @@ components:
                 description: The ID of the request.
                 example: 7d318524-d5a4-4fd8-8b29-ad295b2f035b
                 type: string
-            title: applicationListsApIs401Error
+            title: applicationLists401Error
             type: object
       description: Unauthorized
       headers:
@@ -21118,7 +20841,7 @@ components:
           $ref: '#/components/headers/Content-Type'
         Date:
           $ref: '#/components/headers/Date'
-    applicationListsApIs403Error:
+    applicationLists403Error:
       content:
         application/json:
           schema:
@@ -21131,7 +20854,7 @@ components:
                 description: The ID of the request.
                 example: 7d318524-d5a4-4fd8-8b29-ad295b2f035b
                 type: string
-            title: applicationListsApIs403Error
+            title: applicationLists403Error
             type: object
       description: Forbidden
       headers:
@@ -21139,7 +20862,7 @@ components:
           $ref: '#/components/headers/Content-Type'
         Date:
           $ref: '#/components/headers/Date'
-    applicationListsApIs404Error:
+    applicationLists404Error:
       content:
         application/json:
           schema:
@@ -21152,7 +20875,7 @@ components:
                 description: The ID of the request.
                 example: 7d318524-d5a4-4fd8-8b29-ad295b2f035b
                 type: string
-            title: applicationListsApIs404Error
+            title: applicationLists404Error
             type: object
       description: Not Found
       headers:
@@ -21160,7 +20883,7 @@ components:
           $ref: '#/components/headers/Content-Type'
         Date:
           $ref: '#/components/headers/Date'
-    applicationListsApIs500Error:
+    applicationLists500Error:
       content:
         application/json:
           schema:
@@ -21173,7 +20896,7 @@ components:
                 description: The ID of the request.
                 example: 7d318524-d5a4-4fd8-8b29-ad295b2f035b
                 type: string
-            title: applicationListsApIs500Error
+            title: applicationLists500Error
             type: object
       description: Internal Server Error
       headers:
@@ -25607,7 +25330,7 @@ components:
       properties:
         message:
           type: string
-      title: ServerError
+      title: Unauthorized
       type: object
     FinancialViability:
       description: Financial risk to the service provider, based on Dun & Bradstreet's
@@ -30661,7 +30384,7 @@ components:
       description: The descriptive label for the application list.
       example: Application lists on branch_1.
       type: string
-    applicationListsApIsApplicationList:
+    applicationListsApplicationList:
       description: The properties of the application list.
       example:
         applicationCategoryIds: []
@@ -36148,7 +35871,7 @@ components:
             policies.applicationCategories:read: Read Application Category settings
           tokenUrl: https://api.sse.cisco.com/auth/v2/token
       type: oauth2
-    applicationListsApIsOauthFlow:
+    applicationListsOauthFlow:
       description: The client credential flow.
       flows:
         clientCredentials:

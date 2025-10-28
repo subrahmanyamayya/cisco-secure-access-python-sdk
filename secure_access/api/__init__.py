@@ -1,3 +1,7 @@
+# Copyright 2025 Cisco Systems, Inc. and its affiliates
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # flake8: noqa
 
 if __import__("typing").TYPE_CHECKING:
@@ -62,7 +66,6 @@ if __import__("typing").TYPE_CHECKING:
     from secure_access.api.rules_activity_api import RulesActivityApi
     from secure_access.api.s3_bucket_key_rotation_api import S3BucketKeyRotationApi
     from secure_access.api.search_domain_api import SearchDomainApi
-    from secure_access.api.secure_access_api import SecureAccessApi
     from secure_access.api.security_information_for_a_domain_api import SecurityInformationForADomainApi
     from secure_access.api.security_profiles_api import SecurityProfilesApi
     from secure_access.api.service_object_groups_api import ServiceObjectGroupsApi
@@ -161,7 +164,6 @@ from secure_access.api.rule_settings_and_defaults_api import RuleSettingsAndDefa
 from secure_access.api.rules_activity_api import RulesActivityApi
 from secure_access.api.s3_bucket_key_rotation_api import S3BucketKeyRotationApi
 from secure_access.api.search_domain_api import SearchDomainApi
-from secure_access.api.secure_access_api import SecureAccessApi
 from secure_access.api.security_information_for_a_domain_api import SecurityInformationForADomainApi
 from secure_access.api.security_profiles_api import SecurityProfilesApi
 from secure_access.api.service_object_groups_api import ServiceObjectGroupsApi
