@@ -25,7 +25,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "SecureAccess"
+NAME = "secureaccess"
 VERSION = "v2.0.202510221109"
 PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
