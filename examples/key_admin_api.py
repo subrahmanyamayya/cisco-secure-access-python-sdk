@@ -15,7 +15,7 @@ from access_token import generate_access_token
 from secure_access.configuration import Configuration
 from secure_access.api_client import ApiClient
 from secure_access.api import APIKeysApi, RoamingComputersApi
-from urllib3.util.retry import Retry
+from config import config
 from secure_access.models import (
     CreateAPIKeysRequest,
     PatchAPIKeyRequest,
@@ -213,16 +213,7 @@ class KeyAdminApi:
 
 
 if __name__ == "__main__":
-    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
-    ENABLE_RETRY = True
-    RETRIES = Retry(
-        total=3,  # Maximum number of retry attempts
-        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
-        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
-        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
-    ) if ENABLE_RETRY else None
-
-    key_admin_api = KeyAdminApi(retries=RETRIES)
+    key_admin_api = KeyAdminApi(retries=config.get_retry())
     try:
         print("Getting Secure Access API keys...")
         api_keys_response = key_admin_api.get_api_keys()
@@ -287,7 +278,7 @@ if __name__ == "__main__":
         )
         keyadmin_configuration = Configuration(
             access_token=keyadmin_access_token,
-            retries=RETRIES
+            retries=config.get_retry()
         )
         keyadmin_api_client = ApiClient(configuration=keyadmin_configuration)
         roaming_computers_api = RoamingComputersApi(api_client=keyadmin_api_client)

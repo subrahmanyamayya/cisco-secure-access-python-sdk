@@ -6,7 +6,7 @@ from secure_access.api import destination_lists_api, destinations_api
 from secure_access.api_client import ApiClient
 from access_token import generate_access_token
 from secure_access.configuration import Configuration
-from urllib3.util.retry import Retry
+from config import config
 from secure_access.models import (
     DestinationListCreate,
     DestinationListPatch,
@@ -1745,15 +1745,6 @@ def handle_destinations(args, retries=None):
 
 
 if __name__ == "__main__":
-    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
-    ENABLE_RETRY = True
-    RETRIES = Retry(
-        total=3,  # Maximum number of retry attempts
-        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
-        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
-        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
-    ) if ENABLE_RETRY else None
-
     # Main parser
     parser = argparse.ArgumentParser(
         description="Cisco Secure Access Destination Management Tool"
@@ -1778,9 +1769,9 @@ if __name__ == "__main__":
 
     try:
         if args.command == "destination-lists":
-            handle_destination_lists(args, retries=RETRIES)
+            handle_destination_lists(args, retries=config.get_retry())
         elif args.command == "destinations":
-            handle_destinations(args, retries=RETRIES)
+            handle_destinations(args, retries=config.get_retry())
     except KeyboardInterrupt:
         logger.info("Operation cancelled by user")
         sys.exit(0)

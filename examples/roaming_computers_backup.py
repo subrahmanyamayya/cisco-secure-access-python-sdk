@@ -6,7 +6,7 @@ from secure_access.api import roaming_computers_api
 from secure_access.api_client import ApiClient
 from access_token import generate_access_token
 from secure_access.configuration import Configuration
-from urllib3.util.retry import Retry
+from config import config
 import json, argparse, logging, sys, re
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Union
@@ -680,15 +680,6 @@ def parse_datetime(date_string: str) -> datetime:
 
 
 def main():
-    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
-    ENABLE_RETRY = True
-    RETRIES = Retry(
-        total=3,  # Maximum number of retry attempts
-        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
-        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
-        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
-    ) if ENABLE_RETRY else None
-
     parser = argparse.ArgumentParser(
         description="Utility to backup roaming computers and apply filters",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -867,7 +858,7 @@ Examples:
         swg_status=args.swg_status,
         last_sync_before=last_sync_before,
         last_sync_after=last_sync_after,
-        retries=RETRIES
+        retries=config.get_retry()
     )
     
     # Set custom backup file if provided
