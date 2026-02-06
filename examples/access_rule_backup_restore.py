@@ -7,6 +7,7 @@ from secure_access.api_client import ApiClient
 from access_token import generate_access_token
 from secure_access.configuration import Configuration
 from secure_access.models import PutRuleRequest
+from urllib3.util.retry import Retry
 from secure_access.models import AddRuleRequest
 import json, argparse, logging, sys
 
@@ -20,10 +21,11 @@ handler.setFormatter(formatter)
 
 
 class AccessRulesBackupAndRestore:
-    def __init__(self, offset=None, limit=None, rules=None):
+    def __init__(self, offset=None, limit=None, rules=None, retries=None):
         self.access_token = generate_access_token()
         self.configuration = Configuration(
             access_token=self.access_token,
+            retries=retries
         )
         self.api_client = ApiClient(configuration=self.configuration)
         self.access_rule_list = []
@@ -135,6 +137,15 @@ class AccessRulesBackupAndRestore:
 
 
 if __name__ == "__main__":
+    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
+    ENABLE_RETRY = True
+    RETRIES = Retry(
+        total=3,  # Maximum number of retry attempts
+        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
+        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
+        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
+    ) if ENABLE_RETRY else None
+
     parser=argparse.ArgumentParser(description="Utility to backup and restore access rules")
     
     #Adding optional parameters
@@ -174,12 +185,13 @@ if __name__ == "__main__":
     if args.type == "backup":
         if args.offset != None and args.limit !=None:
             access_rule = AccessRulesBackupAndRestore(offset = args.offset, 
-                                                      limit = args.limit)
+                                                      limit = args.limit,
+                                                      retries=RETRIES)
             isListRules = True
         elif args.rules:
-            access_rule = AccessRulesBackupAndRestore(rules = args.rules)
+            access_rule = AccessRulesBackupAndRestore(rules = args.rules, retries=RETRIES)
         else:
-            access_rule = AccessRulesBackupAndRestore()
+            access_rule = AccessRulesBackupAndRestore(retries=RETRIES)
             isListRules = True
 
         if isListRules:
@@ -207,7 +219,7 @@ if __name__ == "__main__":
         logger.info("Taking backup of all the rules.")
         access_rule.backup_access_rule_list()
     elif args.type == "restore":
-        access_rule = AccessRulesBackupAndRestore()
+        access_rule = AccessRulesBackupAndRestore(retries=RETRIES)
         logger.info("Parsing backed up access rules.")
         access_rule.parse_backup_access_rules()
         logger.info("Restoring the access rules.")

@@ -6,6 +6,7 @@ from secure_access.api import destination_lists_api, destinations_api
 from secure_access.api_client import ApiClient
 from access_token import generate_access_token
 from secure_access.configuration import Configuration
+from urllib3.util.retry import Retry
 from secure_access.models import (
     DestinationListCreate,
     DestinationListPatch,
@@ -649,11 +650,12 @@ Notes:
 
 class DestinationListManager:
     def __init__(
-        self, page=None, limit=None, destination_list_ids=None, destination_ids=None
+        self, page=None, limit=None, destination_list_ids=None, destination_ids=None, retries=None
     ):
         self.access_token = generate_access_token()
         self.configuration = Configuration(
             access_token=self.access_token,
+            retries=retries
         )
         self.api_client = ApiClient(configuration=self.configuration)
         self.destination_lists = []
@@ -1432,7 +1434,7 @@ def setup_destinations_parser(subparsers):
     add_destination_filter_argument(backup_parser, "destinations to backup")
 
 
-def handle_destination_lists(args):
+def handle_destination_lists(args, retries=None):
     """Handle all destination list operations"""
     # Handle helper options first (before initializing manager to avoid API calls)
     if args.dest_lists_command == "create":
@@ -1441,7 +1443,7 @@ def handle_destination_lists(args):
             return
 
     # Initialize manager with appropriate parameters
-    manager_kwargs = {}
+    manager_kwargs = {"retries": retries}
 
     # Handle pagination for list operations
     if hasattr(args, "page") and args.page is not None:
@@ -1597,7 +1599,7 @@ def handle_destination_lists(args):
             logger.info("No destination lists to backup")
 
 
-def handle_destinations(args):
+def handle_destinations(args, retries=None):
     """Handle all destination operations"""
     # Handle helper options first (before initializing manager to avoid API calls)
     if args.destinations_command == "create":
@@ -1606,7 +1608,7 @@ def handle_destinations(args):
             return
 
     # Initialize manager with appropriate parameters
-    manager_kwargs = {}
+    manager_kwargs = {"retries": retries}
 
     # Handle pagination for list operations
     if hasattr(args, "page") and args.page is not None:
@@ -1743,6 +1745,15 @@ def handle_destinations(args):
 
 
 if __name__ == "__main__":
+    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
+    ENABLE_RETRY = True
+    RETRIES = Retry(
+        total=3,  # Maximum number of retry attempts
+        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
+        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
+        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
+    ) if ENABLE_RETRY else None
+
     # Main parser
     parser = argparse.ArgumentParser(
         description="Cisco Secure Access Destination Management Tool"
@@ -1767,9 +1778,9 @@ if __name__ == "__main__":
 
     try:
         if args.command == "destination-lists":
-            handle_destination_lists(args)
+            handle_destination_lists(args, retries=RETRIES)
         elif args.command == "destinations":
-            handle_destinations(args)
+            handle_destinations(args, retries=RETRIES)
     except KeyboardInterrupt:
         logger.info("Operation cancelled by user")
         sys.exit(0)

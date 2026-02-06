@@ -15,6 +15,7 @@ from access_token import generate_access_token
 from secure_access.configuration import Configuration
 from secure_access.api_client import ApiClient
 from secure_access.api import APIKeysApi, RoamingComputersApi
+from urllib3.util.retry import Retry
 from secure_access.models import (
     CreateAPIKeysRequest,
     PatchAPIKeyRequest,
@@ -30,7 +31,7 @@ class KeyAdminApi:
     Handles Secure Access API key administration operations.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, retries=None) -> None:
         """
         Initializes the KeyAdminApi, checks required environment variables, and sets up API clients.
 
@@ -52,10 +53,12 @@ class KeyAdminApi:
         except Exception as e:
             raise RuntimeError(f"Failed to generate access token: {e}")
         self.configuration: Configuration = Configuration(
-            access_token=self.access_token
+            access_token=self.access_token,
+            retries=retries
         )
         self.api_client: ApiClient = ApiClient(configuration=self.configuration)
         self.api_keys_api: APIKeysApi = APIKeysApi(api_client=self.api_client)
+        self.retries = retries  # Store for use with secondary configurations
 
     def get_api_keys(self) -> "KeysResponseList":
         """
@@ -210,7 +213,16 @@ class KeyAdminApi:
 
 
 if __name__ == "__main__":
-    key_admin_api = KeyAdminApi()
+    # Enable/disable automatic retry on rate limiting (429) with exponential backoff
+    ENABLE_RETRY = True
+    RETRIES = Retry(
+        total=3,  # Maximum number of retry attempts
+        backoff_factor=3,  # Wait time multiplier between retries: {backoff_factor} * (2 ** (retry_number - 1)) seconds. With factor=3: 0s, 3s, 6s delays
+        status_forcelist=[429],  # HTTP status codes that trigger a retry (429 = Too Many Requests / rate limited)
+        allowed_methods=["GET", "POST"]  # HTTP methods that are allowed to be retried
+    ) if ENABLE_RETRY else None
+
+    key_admin_api = KeyAdminApi(retries=RETRIES)
     try:
         print("Getting Secure Access API keys...")
         api_keys_response = key_admin_api.get_api_keys()
@@ -273,7 +285,10 @@ if __name__ == "__main__":
         keyadmin_access_token = generate_access_token(
             client_id=api_key_client_id, client_secret=api_key_client_secret
         )
-        keyadmin_configuration = Configuration(access_token=keyadmin_access_token)
+        keyadmin_configuration = Configuration(
+            access_token=keyadmin_access_token,
+            retries=RETRIES
+        )
         keyadmin_api_client = ApiClient(configuration=keyadmin_configuration)
         roaming_computers_api = RoamingComputersApi(api_client=keyadmin_api_client)
         try:
